@@ -2,10 +2,10 @@
 
 return [
     'database' => [
-        'name' => 'php101App',
+        'name' => 'php101',
         'username' => 'root',
-        'password' => '',
-        'connection' => 'mysql:host=127.0.0.1;dbname=users',
+        'password' => 'securepassword',
+        'connection' => 'mysql:host=127.0.0.1',
         'options' => [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         ]
