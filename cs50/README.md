@@ -1,5 +1,5 @@
 CS50 C Library is used throughout some of these programs. If you want to learn more or need the install instructions, 
-go to [manual.cs50.net/library](https://manual.cs50.net/library/).
+go to [manual.cs50.net/library](https://manual.cs50.net/library/). I had started this course in around 2016, early 2017.
 
 To compile a program using the CS50 library:
 ```
