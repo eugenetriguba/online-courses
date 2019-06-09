@@ -14,6 +14,26 @@ class ProjectsController extends Controller
         ]);
     }
 
+    public function show()
+    {
+
+    }
+
+    public function edit()
+    {
+
+    }
+
+    public function update()
+    {
+        
+    }
+
+    public function destroy()
+    {
+        
+    }
+
     public function store()
     {
         $project = new Project();
