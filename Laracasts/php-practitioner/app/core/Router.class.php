@@ -1,7 +1,10 @@
 <?php declare(strict_types=1);
 
+namespace App\Core;
+
 /**
- * Class Router
+ * Class Router handles all the routing of urls
+ * for this application.
  */
 class Router
 {
@@ -16,6 +19,8 @@ class Router
     }
 
     /**
+     * Retrieve all the routes.
+     *
      * @return array
      */
     public function getRoutes() : array
@@ -38,6 +43,8 @@ class Router
     }
 
     /**
+     * Add a route to GET
+     *
      * @param $uri
      * @param $controller
      */
@@ -47,6 +54,8 @@ class Router
     }
 
     /**
+     * Add a route to POST
+     *
      * @param $uri
      * @param $controller
      */
@@ -58,6 +67,7 @@ class Router
     /**
      * @param String $uri
      * @param String $requestType
+     *
      * @return String
      * @throws Exception
      */
@@ -74,7 +84,8 @@ class Router
 
     protected function callAction($controller, $action)
     {
-        $controller = new $controller;
+        $controllerName = "App\\Controllers\\{$controller}";
+        $controller = new $controllerName;
 
         if (!method_exists($controller, $action)) {
             throw new Exception(
