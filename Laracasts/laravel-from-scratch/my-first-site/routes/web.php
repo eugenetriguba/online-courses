@@ -12,7 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome')->with([
+        'pageName' => 'test',
+        'tasks' => [
+            'Go to store',
+            'Go to market',
+            'Go elsewhere'
+        ]
+    ]);
 });
 
 Route::get('/about', function () {
