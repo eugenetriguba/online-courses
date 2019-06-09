@@ -3,6 +3,11 @@
 Call them what you want rules, guidelines, etc.
 They come from The ThoughtWorks Anthology.
 
+## Table of Contents
+
+ * [No Abbreviations](#no-abbreviations)
+ * [Don't use else](#dont-use-else)
+
 ## No Abbreviations
 
 Essentially, use meaningful names and don't abbreviate. Be explicit. There is no benefit in doing in saving a few extra keystrokes, especially when any good editor nowadays will have good autocompletion. Writing those few extra keystrokes is not the bottle neck, reading and understanding the code is.
@@ -24,8 +29,8 @@ function fetch($billingId) {}
 function fetchByBillingId($id) {}
 ```
 
-// If a method name has to be super long to describe what it is 
-// doing, that could be an indication of a code smell.
+If a method name has to be super long to describe what it is 
+doing, that could be an indication of a code smell.
 ```php
 class Order 
 {
@@ -106,7 +111,7 @@ We can even use dependency injection to simplify the validation steps
 we have in the controller since they don't really belong there.
 
 Furthermore if validation failed, you'd want that method to throw an exception
-which you could then catch right there or have a dedicated error handler.
+which you could catch right there or have a dedicated error handler.
 ```php
 public function store()
 {
@@ -155,7 +160,7 @@ function signUp(Subscription $subscription)
     $subscription->create();
 }
 
-function factoryMethod($type)
+function getSubscriptionType($type)
 {
     if ($type == 'forever')
     {
