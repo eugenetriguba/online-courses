@@ -1,13 +1,13 @@
-<h1>Projects</h1>
+@extends('layouts/layout')
 
-<h2>Projects that were created today:</h2>
-@foreach ($projects as $project)
-    @if (date('Ymd', strtotime($projects[0]->created_at)) == date('Ymd'))
-        <li>{{ $project->title }}: {{ $project->description }}</li>
-    @endif
-@endforeach
+@section('title', 'Projects')
 
-<h2>All Projects</h2>
-@foreach ($projects as $project)
-    <li>{{ $project->title }}: {{ $project->description }}</li>
-@endforeach
+@section('content')
+    <h1>Projects</h1>
+
+    <ul>
+        @foreach ($projects as $project)
+            <li>{{ $project->title }}: {{ $project->description }}</li>
+        @endforeach
+    </ul>
+@endsection
