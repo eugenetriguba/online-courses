@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet"> 
+
+        <style>
+            html, body {
+                font-size: 16px;
+                font-family: 'Roboto', sans-serif;
+            }
+            li {
+                list-style-type: none;
+            }
+            ul {
+                padding: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root">
+            <h2>Incomplete Tasks</h2>
+
+            <ul>
+                <li v-for="task in incompleteTasks">
+                    <input type="checkbox" @click="task.completed = true">
+                    <span v-text="task.description"></span>
+                </li>
+            </ul>
+
+            <h2>Complete Tasks</h2>
+            <ul>
+                <li v-for="task in completedTasks">
+                    <input type="checkbox" checked @click="task.completed = false">
+                    <span v-text="task.description"></span>
+                </li>
+            </ul>
+        </div>
+
+        <script src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>
+
+        <script>
+            const app = new Vue({
+                el: '#root',
+                data: {
+                    tasks: [
+                        { description: 'Go to the store', completed: true },
+                        { description: 'Finish screencast', completed: false },
+                        { description: 'Make donation', completed: false },
+                        { description: 'Clear inbox', completed: false },
+                        { description: 'Make dinner', completed: true }
+                    ]
+                },
+                computed: {
+                    incompleteTasks() {
+                        return this.tasks.filter(task => !task.completed)
+                    },
+                    completedTasks() {
+                        return this.tasks.filter(task => task.completed)
+                    }
+                }
+            });
+
+        </script>
+    </body>
+</html>

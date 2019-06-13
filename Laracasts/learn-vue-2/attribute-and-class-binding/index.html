@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+
+        <style>
+            .is-loading {
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root">
+            <!-- Shorthand for v-bind:title="title" -->
+            <button :title="title">Hover over me</button>
+
+            <button :class="{ 'is-loading': isLoading }" @click="toggleClass">Toggle me</button>
+            <button :disabled="active" @click="toggleDisabled">Disabled?</button>
+        </div>
+
+        <script src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>
+
+        <script>
+            const app = new Vue({
+                el: '#root',
+                data: {
+                    title: 'Now the title is being set through JS.',
+                    isLoading: false,
+                    active: false
+                },
+                methods: {
+                    toggleClass() {
+                        this.isLoading = this.isLoading ? false : true;
+                    },
+                    toggleDisabled() {
+                        this.active = this.active ? false : true;
+                    }
+                }
+            });
+
+        </script>
+    </body>
+</html>
