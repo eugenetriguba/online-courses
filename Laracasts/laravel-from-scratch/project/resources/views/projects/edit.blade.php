@@ -5,7 +5,7 @@
 @section('content')
     <h1 class="title">Edit Project
 
-    <form action="/projects/{{ $project->id }}" method="POST">
+    <form action="/projects/{{ $project->id }}" method="POST" style="margin-bottom: 1rem">
 
         @method('PATCH')
         @csrf
@@ -29,6 +29,18 @@
         <div class="field">
             <div class="control">
                 <button class="button is-link" type="submit">Update Project</button>
+            </div>
+        </div>
+    </form>
+
+    <form action="/projects/{{ $project->id }}" method="POST">
+
+        @method('DELETE')
+        @csrf
+
+        <div class="field">
+            <div class="control">
+                <button class="button" type="submit">Delete Project</button>
             </div>
         </div>
     </form>

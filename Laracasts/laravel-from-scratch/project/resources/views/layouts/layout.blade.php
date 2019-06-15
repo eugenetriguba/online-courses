@@ -9,6 +9,12 @@
     <title>@yield('title', 'App')</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
+
+    <style>
+        .container {
+            padding: 2rem;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
