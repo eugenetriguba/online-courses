@@ -14,6 +14,9 @@
         .container {
             padding: 2rem;
         }
+        .is-complete {
+            text-decoration: line-through;
+        }
     </style>
 </head>
 <body>
