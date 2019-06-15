@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 /*
  * Route conventions
+ * $ php artisan route:list
  *
  * GET    /projects        (index)   (show all projects)
  * GET    /projects/create (create)  (show a form to create a project)
@@ -28,11 +29,3 @@ Route::get('/', function () {
  */
 
 Route::resource('projects', 'ProjectsController');
-
-//Route::get('/projects',                  'ProjectsController@index');
-//Route::get('/projects/create',           'ProjectsController@create');
-//Route::get('/projects/{projectId}',      'ProjectsController@show');
-//Route::post('/projects',                 'ProjectsController@store');
-//Route::get('/projects/{projectId}/edit', 'ProjectsController@edit');
-//Route::patch('/projects/{projectId}',    'ProjectsController@update');
-//Route::delete('/projects/{projectId}',   'ProjectsController@destroy');
