@@ -32,22 +32,27 @@ class ProjectsController extends Controller
         return redirect('/projects');
     }
 
+    public function create()
+    {
+        return view('projects/create');
+    }
+
+    public function store()
+    {
+        $attributes = request()->validate([
+            'title' => ['required', 'min:3', 'max:255'],
+            'description' => ['required', 'min:3']
+        ]);
+
+        Project::create($attributes);
+
+        return redirect('/projects');
+    }
+
     public function destroy(Project $project)
     {
         $project->delete();
 
         return redirect('/projects');
-    }
-
-    public function store()
-    {
-        Project::create(request(['title', 'description']));
-
-        return redirect('/projects');
-    }
-
-    public function create()
-    {
-        return view('projects/create');
     }
 }
