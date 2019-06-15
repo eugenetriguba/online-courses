@@ -12,4 +12,9 @@ class Project extends Model
      * @var array
      */
     protected $fillable = ['title', 'description'];
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 }

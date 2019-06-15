@@ -7,9 +7,23 @@
 
     <div class="content">
         {{ $project->description }}
+
+        <p>
+            <a href="/projects/{{ $project->id }}/edit">Edit</a>
+        </p>
     </div>
 
-    <p>
-        <a href="/projects/{{ $project->id }}/edit">Edit</a>
-    </p>
+    @if ($project->tasks->count())
+        <div>
+            <ul>
+                @foreach ($project->tasks as $task)
+                    <li>{{ $task->description }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @else
+        <div>
+            <p>There are no tasks for this project.</p>
+        </div>
+    @endif
 @endsection
