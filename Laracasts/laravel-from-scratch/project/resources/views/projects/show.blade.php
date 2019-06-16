@@ -14,7 +14,7 @@
     </div>
 
     @if ($project->tasks->count())
-        <div>
+        <div class="box">
             @foreach ($project->tasks as $task)
                 <div>
                     {{-- Both viable options for the form endpoint--}}
@@ -34,8 +34,30 @@
             @endforeach
         </div>
     @else
-        <div>
+        <div class="box">
             <p>There are no tasks for this project.</p>
         </div>
     @endif
+
+    <form class="box" method="POST" action="/projects/{{ $project->id }}/tasks">
+
+        @csrf
+
+        <div class="field">
+            <label for="description" class="label">New Task</label>
+
+            <div class="control">
+                <input type="text" class="input" name="description" placeholder="New Task" required>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <button class="button is-link" type="submit">Add Task</button>
+            </div>
+        </div>
+
+        @include('errors')
+
+    </form>
 @endsection
