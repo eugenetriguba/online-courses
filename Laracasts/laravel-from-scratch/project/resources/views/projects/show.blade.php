@@ -20,9 +20,12 @@
                     {{-- Both viable options for the form endpoint--}}
                     {{-- PATCH /projects/id/tasks/id --}}
                     {{-- PATCH /tasks/id --}}
-                    <form method="POST" action="/tasks/{{ $task->id }}">
+                    <form method="POST" action="/completed-tasks/{{ $task->id }}">
 
-                        @method('PATCH')
+                        @if ($task->completed)
+                            @method('DELETE')
+                        @endif
+                        
                         @csrf
 
                         <label for="completed" class="checkbox {{ $task->completed ? 'is-complete' : '' }}">
