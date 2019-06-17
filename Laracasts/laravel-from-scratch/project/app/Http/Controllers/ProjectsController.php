@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Mail;
 use App\Project;
+use App\Mail\ProjectCreated;
 
 class ProjectsController extends Controller
 {
@@ -26,6 +27,12 @@ class ProjectsController extends Controller
 
     public function show(Project $project)
     {
+        // about_if()
+        // about_unless
+        // about_unless(\Gate::denies('update', $project), 403);
+        // Can also handle authorization through blade files (conditional)
+        $this->authorize('update', $project);
+
         return view('projects.show', compact('project'));
     }
 
@@ -36,7 +43,14 @@ class ProjectsController extends Controller
 
     public function update(Project $project)
     {
-        $project->update(request(['title', 'description']));
+        $this->authorize('update', $project);
+
+        $attributes = request()->validate([
+            'title' => ['required', 'max:255'],
+            'description' => ['required', 'max:255']
+        ]);
+
+        $project->update($attributes);
 
         return redirect('/projects');
     }
@@ -55,13 +69,19 @@ class ProjectsController extends Controller
 
         $attributes['owner_id'] = auth()->id();
 
-        Project::create($attributes);
+        $project = Project::create($attributes);
+
+        Mail::to(auth()->user()->email)->send(
+            new ProjectCreated($project)
+        );
 
         return redirect('/projects');
     }
 
     public function destroy(Project $project)
     {
+        $this->authorize('update', $project);
+
         $project->delete();
 
         return redirect('/projects');

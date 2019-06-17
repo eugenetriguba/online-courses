@@ -30,7 +30,7 @@ Route::get('/', function (Twitter $twitter) {
  * DELETE /projects/1      (destroy) (delete the project with an id of 1)
  */
 
-Route::resource('projects', 'ProjectsController');
+Route::resource('projects', 'ProjectsController');//->middleware('can:update,project');
 
 Route::post('/projects/{project}/tasks','ProjectTasksController@store');
 Route::post('/completed-tasks/{task}', 'CompletedTasksController@store');
