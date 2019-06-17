@@ -15,22 +15,13 @@ class ProjectsController extends Controller
 
     public function index()
     {
-        // auth()->id() // 4
-        // auth()->user() // User
-        // auth()->check() //boolean
-        // auth()->guest() // boolean
-
-        $projects = Project::where('owner_id', auth()->id())->get();
-
-        return view('projects.index', compact('projects'));
+        return view('projects.index', [
+            'projects' => auth()->user()->projects
+        ]);
     }
 
     public function show(Project $project)
     {
-        // about_if()
-        // about_unless
-        // about_unless(\Gate::denies('update', $project), 403);
-        // Can also handle authorization through blade files (conditional)
         $this->authorize('update', $project);
 
         return view('projects.show', compact('project'));
@@ -45,12 +36,7 @@ class ProjectsController extends Controller
     {
         $this->authorize('update', $project);
 
-        $attributes = request()->validate([
-            'title' => ['required', 'max:255'],
-            'description' => ['required', 'max:255']
-        ]);
-
-        $project->update($attributes);
+        $project->update($this->validateProject());
 
         return redirect('/projects');
     }
@@ -62,11 +48,7 @@ class ProjectsController extends Controller
 
     public function store()
     {
-        $attributes = request()->validate([
-            'title' => ['required', 'min:3', 'max:255'],
-            'description' => ['required', 'min:3']
-        ]);
-
+        $attributes = $this->validateProject();
         $attributes['owner_id'] = auth()->id();
 
         $project = Project::create($attributes);
@@ -85,5 +67,13 @@ class ProjectsController extends Controller
         $project->delete();
 
         return redirect('/projects');
+    }
+
+    protected function validateProject()
+    {
+        return request()->validate([
+            'title' => ['required', 'min:3', 'max:255'],
+            'description' => ['required', 'min:3', 'max:255']
+        ]);
     }
 }

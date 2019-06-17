@@ -33,6 +33,8 @@
         </div>
     </form>
 
+    @include('errors')
+
     <form action="/projects/{{ $project->id }}" method="POST">
 
         @method('DELETE')
@@ -43,5 +45,6 @@
                 <button class="button" type="submit">Delete Project</button>
             </div>
         </div>
+
     </form>
 @endsection

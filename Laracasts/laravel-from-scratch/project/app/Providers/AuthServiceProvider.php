@@ -28,7 +28,7 @@ class AuthServiceProvider extends ServiceProvider
         $gate::before(function($user) {
             // if $user->isAdmin();
             // if $user->role === 'admin';
-            if ($user->id === 1)
+            if ($user->id === 3)
                 return true; // this is a admin id
 
             return null;
