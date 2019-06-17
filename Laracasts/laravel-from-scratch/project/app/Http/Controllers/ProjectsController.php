@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Mail;
 use App\Project;
-use App\Mail\ProjectCreated;
 
 class ProjectsController extends Controller
 {
@@ -49,13 +47,10 @@ class ProjectsController extends Controller
     public function store()
     {
         $attributes = $this->validateProject();
+
         $attributes['owner_id'] = auth()->id();
 
         $project = Project::create($attributes);
-
-        Mail::to($project->owner->email)->send(
-            new ProjectCreated($project)
-        );
 
         return redirect('/projects');
     }
