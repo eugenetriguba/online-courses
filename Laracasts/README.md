@@ -1,5 +1,5 @@
 # Laracasts
 
-Courses taken on Laracasts to learn PHP and Laravel
+Courses taken on Laracasts.
 
 Started Feb 23, 2019
