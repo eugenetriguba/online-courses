@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+        <style>
+            body {
+                font-size: 16px;
+                margin-top: 4rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root" class="container">
+            
+
+            <tabs>
+                <tab name="About Us" :selected="true">
+                    <h1>This is the contect for the about us page</h1>
+                </tab>
+
+                <tab name="About Culture">
+                    <h1>This is the contect for the about culture page</h1>
+                </tab>
+
+                <tab name="About Our Vision">
+                    <h1>This is the contect for the about our vision page</h1>
+                </tab>
+            </tabs>
+
+        </div>
+
+        <script src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>
+
+        <script src="app.js"></script>
+    </body>
+</html>
