@@ -10,9 +10,7 @@ class ProjectsTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
 
-    /** 
-     * @test 
-     */
+    /** @test */
     public function a_user_can_create_a_project()
     {
         $this->withoutExceptionHandling();
@@ -29,9 +27,7 @@ class ProjectsTest extends TestCase
         $this->get('/projects')->assertSee($attributes['title']);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function a_user_can_view_a_project()
     {
         $this->withoutExceptionHandling();
@@ -43,10 +39,7 @@ class ProjectsTest extends TestCase
             ->assertSee($project->description);
     }
     
-
-    /**
-     * @test
-     */
+    /** @test */
     public function a_project_requires_a_title()
     {
         $attributes = factory('App\Project')->raw([
@@ -56,9 +49,7 @@ class ProjectsTest extends TestCase
         $this->post('/projects', $attributes)->assertSessionHasErrors('title');
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function a_project_requires_a_description()
     {
         $attributes = factory('App\Project')->raw([
@@ -66,6 +57,14 @@ class ProjectsTest extends TestCase
         ]);
 
         $this->post('/projects', $attributes)->assertSessionHasErrors('description');
+    }
+
+    /** @test */
+    public function a_project_requires_an_owner()
+    {
+        $attributes = factory('App\Project')->raw();
+
+        $this->post('/projects', $attributes)->assertSessionHasErrors('owner');
     }
     
 }
