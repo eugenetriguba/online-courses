@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ExampleTest extends TestCase
+class ExampleTest extends DuskTestCase
 {
     /**
      * A basic test example.
@@ -14,8 +14,13 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $response = $this->get('/');
+        // 1. Visit the home page
 
-        $response->assertStatus(200);
+        // 2. Press a "click me" link
+        // 3. See "You've been clicked"
+        // 4. Asser that the current url is /feedback
+        $this->visit('/')->click('click me')->seePageIs('/feedback');
+
+
     }
 }

@@ -84,6 +84,10 @@
                     Laravel
                 </div>
 
+                <div>
+                    <a href="/feedback">click me</a>
+                </div>
+
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
